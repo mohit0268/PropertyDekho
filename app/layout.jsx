@@ -1,4 +1,6 @@
 import '@/assets/styles/global.css'
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 
 export const metadata= {
     title:"Property-Dekho",
@@ -10,7 +12,9 @@ const layout = ({children}) => {
     
       <html>
         <body>
-          <div className=''>{children}</div>
+          <Navbar/>
+          <main>{children}</main>
+          <Footer/>
         </body>
       </html>
     
