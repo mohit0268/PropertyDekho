@@ -1,11 +1,15 @@
 import Link from 'next/link'
 import PropertyCard from "@/components/PropertyCard";
-import properties from "@/properties.json";
+import connectDB from '@/config/database';
+import Property from '@/models/Property';
 
-const HomeProperties = () => {
-  const recentProperties = properties
-    .sort(() => Math.random() - Math.random())
-    .slice(0, 3);
+const HomeProperties = async () => {
+    await connectDB();
+  const recentProperties = await Property.find({})
+  .sort({createdAt:-1})
+  .limit(3)
+  .lean();
+
   return (
     <>
       <section className="px-4 py-6">
@@ -25,10 +29,10 @@ const HomeProperties = () => {
           </div>
         </div>
       </section>
-      <section class="m-auto max-w-lg my-10 px-6">
+      <section className="m-auto max-w-lg my-10 px-6">
         <Link
           href="/properties"
-          class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+          className="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
         >
           View All Properties
         </Link>

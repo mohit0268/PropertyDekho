@@ -14,7 +14,6 @@ const Navbar = () => {
   const [isloggedIn, setisLoggedIn] = useState(false);
 
   const pathname = usePathname();
-  console.log(pathname);
 
 
   return (
@@ -79,7 +78,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   href="/properties"
-                  className="text-white hover:text-blue-500 hover:bg-white rounded-md px-3 py-2"
+                  className={`${pathname === '/properties' ? 'bg-white text-blue-500 px-3 py-2': ""} "text-white hover:text-blue-500 rounded-md px-3 py-2"`}
                 >
                   Properties
                 </Link>
